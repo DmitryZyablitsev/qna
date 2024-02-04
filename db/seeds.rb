@@ -1,7 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Question.destroy_all
+Question.create!([
+                   { title: 'rails_6', body: 'What JS working in rails 6?' },
+                   { title: 'Slim', body: 'What Slim working in rails 6?' },
+                   { title: 'Ruby 3.0.0', body: 'What updated whis ruby 2.6 on 3.0.0' }
+                 ])
