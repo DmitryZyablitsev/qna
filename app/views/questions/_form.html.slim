@@ -1,0 +1,8 @@
+= form_with model: question do |f|
+  div
+    p= f.label 'Title:'
+    p= f.text_field :title
+  div
+    p= f.label 'Body:'
+    p= f.text_field :body
+  = f.submit
