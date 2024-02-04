@@ -1,2 +1,4 @@
-p = question.title
-p = question.body
+div class="card mb-3 mt-3" style="max-width: 18rem"
+  div class="card-header text-center" = link_to question.title, question
+  div class="card-body"
+    p class="card-text" = question.body
