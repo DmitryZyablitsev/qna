@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-feature 'User can create question', %q{
+feature 'User can create question', "
   In order to get answer fron a community
   As an autheticated user
   I'd like to be able to ask the question
-} do
+" do
   given(:user) { create(:user) }
 
   describe 'Authenticated user' do
@@ -14,20 +14,20 @@ feature 'User can create question', %q{
       visit questions_path
       click_on 'Ask question'
     end
-  
+
     scenario 'asks a question' do
       fill_in 'Title', with: 'Test question'
       fill_in 'Body', with: 'text text text'
       click_on 'Ask'
-  
+
       expect(page).to have_content 'Your question successfully created.'
       expect(page).to have_content 'Test question'
       expect(page).to have_content 'text text text'
     end
-  
+
     scenario 'asks a question with errors' do
       click_on 'Ask'
-  
+
       expect(page).to have_content "Title can't be blank"
     end
   end
@@ -36,6 +36,6 @@ feature 'User can create question', %q{
     visit questions_path
     click_on 'Ask question'
 
-    expect(page).to have_content "You need to sign in or sign up before continuing."
+    expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
 end
