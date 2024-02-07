@@ -27,9 +27,10 @@ RSpec.describe QuestionsController do
   end
 
   describe 'GET #new' do
-    before { login(user) }
-
-    before { get :new }
+    before do
+      login(user)
+      get :new
+    end
 
     it 'render new view' do
       expect(response).to render_template :new
@@ -37,9 +38,10 @@ RSpec.describe QuestionsController do
   end
 
   describe 'GET #edit' do
-    before { login(user) }
-
-    before { get :edit, params: { id: question } }
+    before do
+      login(user)
+      get :edit, params: { id: question }
+    end
 
     it 'render edit view' do
       expect(response).to render_template :edit
