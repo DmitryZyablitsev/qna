@@ -1,8 +1,8 @@
 = form_with model: question do |f|
   div
-    p= f.label 'Title:'
+    p= f.label :title
     p= f.text_field :title
   div
-    p= f.label 'Body:'
-    p= f.text_field :body
-  = f.submit
+    p= f.label :body
+    p= f.text_area :body
+  = f.submit 'Ask'
