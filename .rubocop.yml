@@ -177,6 +177,12 @@ RSpec/Capybara/FeatureMethods:
 RSpec/MultipleExpectations:
  Enabled: false
 
+RSpec/PredicateMatcher:
+  Enabled: false
+
+RSpec/ExampleLength:
+   Max: 6
+
 Performance/CollectionLiteralInLoop:
   Exclude:
     - 'Rakefile'
