@@ -1,15 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe AnswersController do
-  let(:question) { create(:question) }
   let(:user) { create(:user) }
+  let(:question) { create(:question, author: user) }
+  let(:answer) { create(:answer, question: question, author: user) }
 
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'saves a new answer in the database' do
         login(user)
         expect do
-          post :create, params: { question_id: question.id, answer: attributes_for(:answer, question_id: question.id) }
+          post :create,
+               params: { question_id: question.id,
+                         answer: attributes_for(:answer, question_id: question.id, author_id: user.id) }
         end.to change(Answer, :count).by(1)
       end
     end
@@ -21,6 +24,18 @@ RSpec.describe AnswersController do
                params: { question_id: question.id, answer: attributes_for(:answer, :invalid, question_id: question.id) }
         end.not_to change(Answer, :count)
       end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before do
+      login(user)
+      question
+      answer
+    end
+
+    it 'delete the answer' do
+      expect { delete :destroy, params: { question_id: question.id, id: answer.id } }.to change(Answer, :count).by(-1)
     end
   end
 end

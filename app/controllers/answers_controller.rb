@@ -3,12 +3,20 @@ class AnswersController < ApplicationController
   def new; end
 
   def create
-    @answer = question.answers.build(answer_params)
+    @answer = current_user.answers.build(answer_params)
+    @answer[:question_id] = params['question_id']
+
     if @answer.save
       redirect_to @answer.question, notice: 'The response has been created'
     else
       render 'questions/show'
     end
+  end
+
+  def destroy
+    @question_id = params['question_id']
+    answer.destroy
+    redirect_to question_path(@question_id), notice: 'Answer was successfully deleted'
   end
 
   private

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController do
-  let(:question) { create(:question) }
   let(:user) { create(:user) }
+  let(:question) { create(:question, author: user) }
 
   describe 'GET #index' do
     let(:questions) { create_list(:question, 3) }
@@ -53,7 +53,9 @@ RSpec.describe QuestionsController do
 
     context 'with valid attributes' do
       it 'saves a new question in the database' do
-        expect { post :create, params: { question: attributes_for(:question) } }.to change(Question, :count).by(1)
+        expect do
+          post :create, params: { question: { title: question.title, body: question.body, author: question.author } }
+        end.to change(Question, :count).by(1)
       end
 
       it 'redirecrs to show view' do
