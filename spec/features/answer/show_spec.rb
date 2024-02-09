@@ -5,19 +5,19 @@ feature 'User can browse list answers certain question', "
   can browse  list answers certain question
 " do
   given(:user) { create(:user) }
-  given(:question) { create(:question) }
-  given(:answer) { create(:answer) }
+  given(:question) { create(:question, author: user) }
+  given!(:answer) { create(:answer, author: user, question: question) }
 
   scenario 'Authenticated user browse list answers' do
     sign_in(user)
 
-    visit "#{questions_path}/#{question.id}"
+    visit question_path(question)
 
     expect(page).to have_content answer.body
   end
 
   scenario 'Unauthenticated user browse list answers' do
-    visit "#{questions_path}/#{question.id}"
+    visit question_path(question)
 
     expect(page).to have_content answer.body
   end

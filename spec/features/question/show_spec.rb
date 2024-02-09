@@ -10,14 +10,14 @@ feature 'User can browse certain question', "
   scenario 'Authenticated user browse certain question' do
     sign_in(user)
 
-    visit "#{questions_path}/#{question.id}"
+    visit question_path(question)
 
     expect(page).to have_content question.title
     expect(page).to have_content question.body
   end
 
   scenario 'Unauthenticated user browse certain question' do
-    visit "#{questions_path}/#{question.id}"
+    visit question_path(question)
 
     expect(page).to have_content question.title
     expect(page).to have_content question.body
