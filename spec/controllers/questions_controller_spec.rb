@@ -53,6 +53,7 @@ RSpec.describe QuestionsController do
 
     context 'with valid attributes' do
       it 'saves a new question in the database' do
+        question
         expect do
           post :create, params: { question: { title: question.title, body: question.body, author: question.author } }
         end.to change(Question, :count).by(1)
