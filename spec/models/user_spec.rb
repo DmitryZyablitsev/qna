@@ -9,10 +9,10 @@ RSpec.describe User do
   it { is_expected.to validate_presence_of :password }
 
   it 'The user is the author question' do
-    expect(user.author_of?(question)).to eq true
+    expect(user.author_of?(question)).to be true
   end
 
   it 'The user is not the author question' do
-    expect(user2.author_of?(question)).to eq false
+    expect(user2.author_of?(question)).to be false
   end
 end
