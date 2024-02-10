@@ -43,7 +43,7 @@ RSpec.describe AnswersController do
     it 'The non-author cannot delete the answer' do
       login(user2)
 
-      expect { delete :destroy, params: { question_id: question.id, id: answer.id } }.to change(Answer, :count).by(0)
+      expect { delete :destroy, params: { question_id: question.id, id: answer.id } }.not_to change(Answer, :count)
     end
   end
 end
