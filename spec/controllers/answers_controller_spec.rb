@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AnswersController do
   let(:user) { create(:user) }
+  let(:user2) { create(:user) }
   let(:question) { create(:question, author: user) }
   let(:answer) { create(:answer, question: question, author: user) }
 
@@ -29,13 +30,20 @@ RSpec.describe AnswersController do
 
   describe 'DELETE #destroy' do
     before do
-      login(user)
       question
       answer
     end
 
     it 'delete the answer' do
+      login(user)
+
       expect { delete :destroy, params: { question_id: question.id, id: answer.id } }.to change(Answer, :count).by(-1)
+    end
+
+    it 'The non-author cannot delete the answer' do
+      login(user2)
+
+      expect { delete :destroy, params: { question_id: question.id, id: answer.id } }.to change(Answer, :count).by(0)
     end
   end
 end

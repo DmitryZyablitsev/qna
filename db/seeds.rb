@@ -1,9 +1,12 @@
 User.destroy_all
 Question.destroy_all
 
-test_user = User.create!(email: 'user@develop.com', password: '12345678')
+user, user2 = User.create!([
+  { email: 'user@develop.com', password: '12345678' },
+  { email: 'user2@develop.com', password: '12345678' }
+])
 
-programming_questions = test_user.questions.create!([
+programming_questions = user.questions.create!([
                                                       { title: 'rails_6', body: 'What JS working in rails 6?' },
                                                       { title: 'Slim', body: 'What Slim working in rails 6?' },
                                                       { title: 'Ruby 3.0.0',
@@ -11,7 +14,7 @@ programming_questions = test_user.questions.create!([
                                                     ])
 
 programming_questions.first.answers.create!([
-                                              { body: 'sdsfsfsfsdf', author: test_user },
-                                              { body: 'aaaaaaaaaaa', author: test_user },
-                                              { body: 'vvvvvvvvvvvv', author: test_user }
+                                              { body: 'sdsfsfsfsdf', author: user },
+                                              { body: 'aaaaaaaaaaa', author: user },
+                                              { body: 'vvvvvvvvvvvv', author: user }
                                             ])
