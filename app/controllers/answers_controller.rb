@@ -15,8 +15,12 @@ class AnswersController < ApplicationController
 
   def destroy
     @question_id = params['question_id']
-    answer.destroy
-    redirect_to question_path(@question_id), notice: 'Answer was successfully deleted'
+    if current_user.author_of?(answer)
+      answer.destroy
+      redirect_to question_path(@question_id), notice: 'Answer was successfully deleted'
+    else
+      redirect_to question_path(@question_id), alert: 'You cannot delete this answer'
+    end
   end
 
   private
