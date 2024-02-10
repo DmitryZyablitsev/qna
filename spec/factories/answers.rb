@@ -1,6 +1,10 @@
 FactoryBot.define do
+  sequence :body do |n|
+    "Answer#{n}Text"
+  end
+
   factory :answer do
-    body { 'AnswerText' }
+    body
     association :question
     association :author
 
