@@ -28,6 +28,7 @@ an answer to the question.
       click_on 'Create a response'
 
       expect(page).to have_content 'error(s) detected:'
+      expect(page).to have_content "Body can't be blank"
     end
   end
 
