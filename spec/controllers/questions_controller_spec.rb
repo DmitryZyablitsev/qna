@@ -4,6 +4,7 @@ RSpec.describe QuestionsController do
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
   let(:question) { create(:question, author: user) }
+  let(:control_question) { question.clone }
 
   describe 'GET #index' do
     let(:questions) { create_list(:question, 3) }
@@ -104,13 +105,14 @@ RSpec.describe QuestionsController do
     end
 
     context 'with invalid attributes' do
-      before { patch :update, params: { id: question, question: attributes_for(:question, :invalid) } }
+      before { control_question; patch :update, params: { id: question, question: attributes_for(:question, :invalid) } }
 
       it 'does not change question' do
+        
         question.reload
 
-        expect(question.title).to eq 'MyString'
-        expect(question.body).to eq 'MyText'
+        expect(question.title).to eq control_question.title
+        expect(question.body).to eq control_question.body
       end
 
       it 're-renders edit view' do
