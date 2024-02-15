@@ -1,42 +1,44 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_question, only: %i[create]
+  before_action :find_answer, only: %i[update destroy best]
+
   def new; end
 
   def create
-    @answer = current_user.answers.build(answer_params)
-    @answer[:question_id] = params['question_id']
+    @answer = @question.answers.build(answer_params)
+    @answer.save
+  end
 
-    if @answer.save
-      redirect_to @answer.question, notice: 'The response has been created'
-    else
-      render 'questions/show'
-    end
+  def update    
+    @answer.update(answer_params)
+    @question = @answer.question
   end
 
   def destroy
-    @question_id = params['question_id']
-    if current_user.author_of?(answer)
-      answer.destroy
-      redirect_to question_path(@question_id), notice: 'Answer was successfully deleted'
-    else
-      redirect_to question_path(@question_id), alert: 'You cannot delete this answer'
+    if current_user.author_of?(@answer)
+      @answer.destroy    
     end
+  end
+
+  def best
+    @question = @answer.question
+    @question.update(best_answer: @answer)
+    @best_answer = @question.best_answer
+    @other_answers = @question.answers.where.not(id: @question.best_answer)
   end
 
   private
 
-  def answer
-    @answer ||= params[:id] ? Answer.find(params[:id]) : Answer.new
+  def find_answer
+    @answer = Answer.find(params[:id])
   end
 
-  def question
+  def find_question
     @question = Question.find(params[:question_id])
   end
-
-  helper_method :answer
-  helper_method :question
-
+ 
   def answer_params
-    params.require(:answer).permit(:body, :question_id)
+    params.require(:answer).permit(:body).merge(author_id: current_user.id)
   end
 end

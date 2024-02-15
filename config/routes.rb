@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :questions do
-    resources :answers, only: %i[new create destroy]
+    resources :answers, shallow: true, only: %i[new create update destroy]
   end
+
+  patch 'answer_best/:id', to: 'answers#best' 
+
 end

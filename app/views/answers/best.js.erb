@@ -1,0 +1,3 @@
+$('.best_answer').html('<%= j render 'answers/best_answer', best_answer: @best_answer %>');
+$('.other_answers').html('<%= j render partial: 'answers/answer', collection: @other_answers%>');
+
