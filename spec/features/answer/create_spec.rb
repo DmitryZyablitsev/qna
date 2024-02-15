@@ -23,7 +23,7 @@ an answer to the question.
       expect(page).to have_content answer.body
     end
 
-    scenario 'answer with errors' do
+    scenario 'answer with errors', js: true do
       fill_in 'Answer', with: ''
       click_on 'Create a response'
 
