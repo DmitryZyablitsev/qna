@@ -1,5 +1,6 @@
-= render 'shared/errors', resource: @answer
-=form_with model: [question, answer], local: true do |f|
+.answer-errors
+  = render 'shared/errors', resource: @answer
+=form_with model: [question, answer], local: false do |f|
   div
     p= f.label :body, 'Answer'
     p= f.text_area :body

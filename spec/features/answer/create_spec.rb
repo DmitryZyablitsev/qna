@@ -15,7 +15,7 @@ an answer to the question.
       visit question_path(question)
     end
 
-    scenario 'can write an answer' do
+    scenario 'can write an answer', js: true do
       fill_in 'Answer', with: answer.body
       click_on 'Create a response'
 
