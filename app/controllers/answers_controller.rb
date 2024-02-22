@@ -5,12 +5,7 @@ class AnswersController < ApplicationController
   def create
     @answer = current_user.answers.build(answer_params)
     @answer[:question_id] = params['question_id']
-
-    if @answer.save
-      redirect_to @answer.question, notice: 'The response has been created'
-    else
-      render 'questions/show'
-    end
+    @answer.save
   end
 
   def destroy

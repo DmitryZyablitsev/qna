@@ -13,7 +13,7 @@ RSpec.describe AnswersController do
         expect do
           post :create,
                params: { question_id: question.id,
-                         answer: attributes_for(:answer, question_id: question.id, author_id: user.id) }
+                         answer: attributes_for(:answer, question_id: question.id, author_id: user.id) }, format: :js
         end.to change(Answer, :count).by(1)
       end
     end
@@ -22,7 +22,7 @@ RSpec.describe AnswersController do
       it 'does not save the answer' do
         expect do
           post :create,
-               params: { question_id: question.id, answer: attributes_for(:answer, :invalid, question_id: question.id) }
+               params: { question_id: question.id, answer: attributes_for(:answer, :invalid, question_id: question.id) }, format: :js
         end.not_to change(Answer, :count)
       end
     end

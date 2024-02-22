@@ -35,12 +35,7 @@ RSpec.configure do |config|
   config.include ControllerHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
   
-  Capybara.javascript_driver = :selenium_chrome
-
-  
-  # Capybara.default_driver = :selenium
-  # Webdrivers::Chromedriver.required_version = `curl https://chromedriver.storage.googleapis.com/LATEST_RELEASE`
-
+  Capybara.javascript_driver = :selenium_chrome_headless
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures')

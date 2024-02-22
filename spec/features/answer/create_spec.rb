@@ -18,8 +18,7 @@ an answer to the question.
     scenario 'can write an answer', js: true do
       fill_in 'Answer', with: answer.body
       click_on 'Create a response'
-
-      expect(page).to have_content 'The response has been created'
+      
       expect(page).to have_content answer.body
     end
 
