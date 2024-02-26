@@ -11,7 +11,8 @@ class AnswersController < ApplicationController
   end
 
   def update    
-    # @answer.update(answer_params)
+    @answer.update(answer_params)
+    @question = @answer.question
   end
 
   def destroy

@@ -18,13 +18,11 @@ I'd like ot be able to edit my answer
 
   describe 'Authenticated user' do
     background do 
-
+      sign_in(user)
+      visit question_path(question)
     end
 
     scenario 'edits his answer', js: true do
-      sign_in(user)
-      visit question_path(question)
-
       click_on 'Edit'
       
       within '.answers' do
