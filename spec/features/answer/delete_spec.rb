@@ -9,7 +9,7 @@ but cannot delete someone else's answer
   given!(:question) { create(:question, author: user) }
   given!(:answer) { create(:answer, author: user, question: question) }
 
-  scenario 'The author can delete the answer' do
+  scenario 'The author can delete the answer', js: true do
     sign_in(user)
     visit question_path(question)
 
@@ -19,14 +19,14 @@ but cannot delete someone else's answer
     expect(page).to have_no_content answer.body
   end
 
-  scenario "Authenticated user cannot delete someone else's answer" do
+  scenario "Authenticated user cannot delete someone else's answer", js: true do
     sign_in(user2)
     visit question_path(question)
 
     expect(page).to have_no_button 'Delete question'
   end
 
-  scenario 'Unauthenticated user cannot delete answer' do
+  scenario 'Unauthenticated user cannot delete answer', js: true do
     visit question_path(question)
 
     expect(page).to have_no_button 'Delete answer'
