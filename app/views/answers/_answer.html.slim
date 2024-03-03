@@ -1,11 +1,12 @@
-p= answer.body
+div(id="answer-#{answer.id}")
+  p= answer.body
 
--if current_user && current_user.author_of?(answer)
-  p
-    = link_to 'Edit','#', class: 'edit-answer-link', data: { answer_id: answer.id }
-    = button_to 'Delete answer', answer_path(answer), method: :delete
+  -if current_user && current_user.author_of?(answer)
+    p
+      = link_to 'Edit','#', class: 'edit-answer-link', data: { answer_id: answer.iduestions/28 }
+      = button_to 'Delete answer', answer_path(answer), method: :delete, remote: true
 
-= form_with model: answer, local: false, class: 'd-none', html: { id: "edit-answer-#{answer.id}" } do |f|
-  = f.label :body, 'Your answer'
-  = f.text_area :body
-  = f.submit 'Save'
+  = form_with model: answer, local: false, class: 'd-none', html: { id: "edit-answer-#{answer.id}" } do |f|
+    = f.label :body, 'Your answer'
+    = f.text_area :body
+    = f.submit 'Save'
