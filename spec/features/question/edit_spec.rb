@@ -10,7 +10,7 @@ feature 'User can edit his question', "
   given!(:question) { create(:question, author: user) }
 
   scenario 'Unatheticated can not edit answer'
-  describe 'Authenticated user' do
+  describe 'Authenticated user', js: true do
     describe 'author' do
       background do
         sign_in(user)
@@ -20,7 +20,7 @@ feature 'User can edit his question', "
         end
       end
 
-      scenario 'edits his question', js: true do
+      scenario 'edits his question' do
         within '.question' do
           fill_in 'Title', with: 'edited title question'
           fill_in 'Body', with: 'edited body question'
@@ -35,7 +35,13 @@ feature 'User can edit his question', "
         end
       end
 
-      scenario 'edits his question with errors'
+      scenario 'edits his question with errors' do 
+        fill_in 'Title', with: ''
+        click_on 'Save'
+
+        expect(page).to have_content "Title can't be blank"
+      end
+
     end
   end
   scenario "tries to edit other user's answer"
