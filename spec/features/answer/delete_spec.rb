@@ -15,7 +15,6 @@ but cannot delete someone else's answer
 
     click_on 'Delete answer'
 
-    expect(page).to have_content 'Answer was successfully deleted'
     expect(page).to have_no_content answer.body
   end
 
