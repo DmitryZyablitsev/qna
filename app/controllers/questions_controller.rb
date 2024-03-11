@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = Answer.new
+    @best_answer = Answer.find(@question.best_answer_id) if @question.best_answer_id
   end
 
   def new

@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2024_03_09_081306) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "author_id", null: false
-    t.boolean "best", default: false
+    t.bigint "best_answer_id"
     t.index ["author_id"], name: "index_questions_on_author_id"
   end
 

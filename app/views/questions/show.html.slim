@@ -11,4 +11,9 @@ p = link_to 'Back', questions_path
 
 .answers
   h3 Answers
+  .best-answer
+    -if @best_answer
+      h4 Best Answer
+      p= @best_answer.body
+
   = render @question.answers
