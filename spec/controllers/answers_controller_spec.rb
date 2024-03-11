@@ -76,4 +76,21 @@ RSpec.describe AnswersController do
       end
     end
   end
+
+  describe 'PATCH #best' do
+    before { login(user) }
+
+    it 'changes answer attribute best' do
+
+      patch :best, params: { id: answer.id }, format: :js
+      answer.reload
+
+      expect(answer.best).to eq true
+    end
+
+    it 'renders update view' do
+      patch :best, params: { id: answer.id }, format: :js
+      expect(response).to render_template :best
+    end
+  end
 end

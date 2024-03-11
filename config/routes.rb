@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   resources :questions do
     resources :answers, shallow: true, only: %i[new create update destroy]
   end
+
+  patch 'answer_best/:id', to: 'answers#best' 
+
 end
