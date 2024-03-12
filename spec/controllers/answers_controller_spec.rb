@@ -81,11 +81,10 @@ RSpec.describe AnswersController do
     before { login(user) }
 
     it 'changes answer attribute best' do
-
       patch :best, params: { id: answer.id }, format: :js
-      answer.reload
+      question.reload
 
-      expect(answer.best).to eq true
+      expect(question.best_answer_id).to eq answer.id
     end
 
     it 'renders update view' do

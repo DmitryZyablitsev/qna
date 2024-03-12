@@ -29,5 +29,4 @@ for his question (the best answer can only be 1)
       expect(page).to have_no_link 'Best'
     end
   end
-
 end
