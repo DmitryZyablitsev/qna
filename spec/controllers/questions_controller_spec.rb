@@ -105,10 +105,12 @@ RSpec.describe QuestionsController do
     end
 
     context 'with invalid attributes' do
-      before { control_question; patch :update, params: { id: question, question: attributes_for(:question, :invalid) }, format: :js }
+      before do
+        control_question
+        patch :update, params: { id: question, question: attributes_for(:question, :invalid) }, format: :js
+      end
 
       it 'does not change question' do
-        
         question.reload
 
         expect(question.title).to eq control_question.title

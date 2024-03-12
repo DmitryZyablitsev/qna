@@ -8,10 +8,10 @@ for his question (the best answer can only be 1)
   given(:user2) { create(:user) }
   given(:user3) { create(:user) }
   given(:question) { create(:question, author: user) }
-  given!(:answer2) { create(:answer, question: question, author: user2 ) }
-  given!(:answer3) { create(:answer, question: question, author: user3 ) }
+  given!(:answer2) { create(:answer, question: question, author: user2) }
+  given!(:answer3) { create(:answer, question: question, author: user3) }
 
-  scenario 'The author of the question can choose the best answer', js: true do
+  scenario 'The author of the question can choose the best answer', :js do
     sign_in(user)
     visit question_path(question)
 
@@ -22,7 +22,7 @@ for his question (the best answer can only be 1)
     end
   end
 
-  scenario 'The non-author of the question cannot choose the best answer', js: true do
+  scenario 'The non-author of the question cannot choose the best answer', :js do
     visit question_path(question)
 
     within '.answers' do

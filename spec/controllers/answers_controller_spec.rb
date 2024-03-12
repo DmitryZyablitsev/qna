@@ -37,13 +37,17 @@ RSpec.describe AnswersController do
     it 'delete the answer' do
       login(user)
 
-      expect { delete :destroy, params: { question_id: question.id, id: answer.id }, format: :js }.to change(Answer, :count).by(-1)
+      expect do
+        delete :destroy, params: { question_id: question.id, id: answer.id }, format: :js
+      end.to change(Answer, :count).by(-1)
     end
 
     it 'The non-author cannot delete the answer' do
       login(user2)
 
-      expect { delete :destroy, params: { question_id: question.id, id: answer.id }, format: :js }.not_to change(Answer, :count)
+      expect do
+        delete :destroy, params: { question_id: question.id, id: answer.id }, format: :js
+      end.not_to change(Answer, :count)
     end
   end
 
@@ -52,7 +56,7 @@ RSpec.describe AnswersController do
 
     context 'with valid attributes' do
       it 'changes answer attributes' do
-        patch :update, params: { id: answer.id, answer: { body: 'new body'} }, format: :js        
+        patch :update, params: { id: answer.id, answer: { body: 'new body' } }, format: :js
         answer.reload
         expect(answer.body).to eq 'new body'
       end
@@ -67,7 +71,7 @@ RSpec.describe AnswersController do
       it 'does not change answer attributes' do
         expect do
           patch :update, params: { id: answer, answer: attributes_for(:answer, :invalid) }, format: :js
-        end.to_not change(answer, :body)
+        end.not_to change(answer, :body)
       end
 
       it 'renders update view' do
