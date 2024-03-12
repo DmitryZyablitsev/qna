@@ -11,10 +11,10 @@ feature 'User can edit his question', "
 
   scenario 'Unatheticated can not edit question' do
     visit question_path(question)
-    expect(page).to_not have_link 'Edit question'
+    expect(page).to have_no_link 'Edit question'
   end
 
-  describe 'Authenticated user', js: true do
+  describe 'Authenticated user', :js do
     describe 'author' do
       background do
         sign_in(user)
@@ -29,25 +29,24 @@ feature 'User can edit his question', "
           fill_in 'Title', with: 'edited title question'
           click_on 'Save'
 
-          expect(page).to_not have_content question.title
+          expect(page).to have_no_content question.title
           expect(page).to have_content 'edited title question'
-          expect(page).to_not have_selector 'textarea'
+          expect(page).to have_no_css 'textarea'
         end
       end
 
-      scenario 'edits his question with errors' do 
+      scenario 'edits his question with errors' do
         fill_in 'Title', with: ''
         click_on 'Save'
 
         expect(page).to have_content "Title can't be blank"
       end
-
     end
   end
 
   scenario "tries to edit other user's question" do
     sign_in(user2)
     visit question_path(question)
-    expect(page).to_not have_link 'Edit question'
+    expect(page).to have_no_link 'Edit question'
   end
 end

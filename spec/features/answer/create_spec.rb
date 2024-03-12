@@ -15,14 +15,14 @@ an answer to the question.
       visit question_path(question)
     end
 
-    scenario 'can write an answer', js: true do
+    scenario 'can write an answer', :js do
       fill_in 'Answer', with: answer.body
       click_on 'Create a response'
-      
+
       expect(page).to have_content answer.body
     end
 
-    scenario 'answer with errors', js: true do
+    scenario 'answer with errors', :js do
       fill_in 'Answer', with: ''
       click_on 'Create a response'
 

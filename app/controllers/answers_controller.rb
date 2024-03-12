@@ -10,15 +10,15 @@ class AnswersController < ApplicationController
     @answer.save
   end
 
-  def update    
+  def update
     @answer.update(answer_params)
     @question = @answer.question
   end
 
   def destroy
-    if current_user.author_of?(@answer)
-      @answer.destroy    
-    end
+    return unless current_user.author_of?(@answer)
+
+    @answer.destroy
   end
 
   def best
@@ -37,7 +37,7 @@ class AnswersController < ApplicationController
   def find_question
     @question = Question.find(params[:question_id])
   end
- 
+
   def answer_params
     params.require(:answer).permit(:body).merge(author_id: current_user.id)
   end
