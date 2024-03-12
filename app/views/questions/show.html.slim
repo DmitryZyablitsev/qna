@@ -10,10 +10,5 @@ p = link_to 'Back', questions_path
   p = render 'answers/form', answer: @answer, question: @question
 
 .answers
-  h3 Answers
-  .best-answer
-    -if @best_answer
-      h4 Best Answer
-      p= @best_answer.body
-
+  h3 Answers  
   = render @question.answers

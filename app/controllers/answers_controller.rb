@@ -22,7 +22,9 @@ class AnswersController < ApplicationController
   end
 
   def best
-   @answer.question.update(best_answer_id: @answer.id)
+    @question = @answer.question
+    @question.update(best_answer_id: @answer.id)
+    @answers = @question.answers
   end
 
   private
