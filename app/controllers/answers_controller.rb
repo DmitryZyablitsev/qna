@@ -16,7 +16,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    return unless current_user.author_of?(@answer)
+    return head :forbidden unless current_user.author_of?(@answer)
 
     @answer.destroy
   end
