@@ -4,6 +4,11 @@ div class="card mb-3 mt-3" style="max-width: 18rem"
   div class="card-body"
     p class="card-text" 
       = question.body
+  div
+  -if question.files.attached?
+    - question.files.each do |file|
+      p= link_to file.filename.to_s, url_for(file)
+
 
 .question-errors
   = render 'shared/errors', resource: question
