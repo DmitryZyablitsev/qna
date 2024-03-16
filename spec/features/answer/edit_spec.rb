@@ -36,6 +36,16 @@ I'd like ot be able to edit my answer
         end
       end
 
+      scenario 'edits his answer with attached file', :js do
+        within '.answers' do          
+          attach_file 'File', ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
+          click_on 'Save'
+
+          expect(page).to have_link 'rails_helper.rb'
+          expect(page).to have_link 'spec_helper.rb'
+        end
+      end
+
       scenario 'edits his answer with errors', :js do
         within '.answers' do
           fill_in 'Your answer', with: '1A'

@@ -37,7 +37,6 @@ feature 'User can edit his question', "
 
       scenario 'with attached file' do
         within '.question' do
-          fill_in 'Title', with: 'edited title question'
           attach_file 'File', ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
           click_on 'Save'
 
