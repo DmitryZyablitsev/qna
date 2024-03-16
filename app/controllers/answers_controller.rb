@@ -39,6 +39,6 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body).merge(author_id: current_user.id)
+    params.require(:answer).permit(:body, files: []).merge(author_id: current_user.id)
   end
 end
