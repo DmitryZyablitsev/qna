@@ -20,4 +20,11 @@ div class="card mb-3 mt-3" style="max-width: 18rem"
   div
     p= f.label :body
     p= f.text_area :body
+  div
+    p= f.label :files
+    p= f.file_field :files, multiple: true
   = f.submit 'Save'
+
+- if current_user && current_user.author_of?(question)
+  = link_to 'Edit question', '#', class: 'edit-question-link'
+  = button_to 'Delete question', question_path(question), method: :delete

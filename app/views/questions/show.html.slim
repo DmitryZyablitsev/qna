@@ -1,8 +1,5 @@
 .question
   = render @question
-  - if current_user && current_user.author_of?(@question)
-    = link_to 'Edit question', '#', class: 'edit-question-link'
-    = button_to 'Delete question', question_path(@question), method: :delete
 
 p = link_to 'Back', questions_path
 
@@ -16,4 +13,3 @@ p = link_to 'Back', questions_path
       = render 'answers/best_answer', best_answer: @best_answer
   .other_answers
     = render partial: 'answers/answer', collection: @other_answers
-
