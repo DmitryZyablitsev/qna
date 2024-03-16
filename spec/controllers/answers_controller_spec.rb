@@ -22,7 +22,8 @@ RSpec.describe AnswersController do
       it 'does not save the answer' do
         expect do
           post :create,
-               params: { question_id: question.id, answer: attributes_for(:answer, :invalid, question_id: question.id) }, format: :js
+               params: { question_id: question.id,
+                         answer: attributes_for(:answer, :invalid, question_id: question.id) }, format: :js
         end.not_to change(Answer, :count)
       end
     end

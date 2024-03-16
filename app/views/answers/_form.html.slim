@@ -4,5 +4,8 @@
   div
     p= f.label :body, 'Answer'
     p= f.text_area :body
+
+    p= f.label :files
+    p= f.file_field :files, multiple: true
  
   = f.submit 'Create a response'
