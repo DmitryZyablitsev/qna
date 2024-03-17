@@ -9,5 +9,5 @@
     p= f.text_area :body
   div
     p= f.label :files
-    p= f.file_field :files, multiple: true
+    p= f.file_field :files, multiple: true, direct_upload: true
   = f.submit 'Ask'
