@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :answers, shallow: true, only: %i[new create update destroy]
   end
 
+  resources :files, only: :destroy
+
   patch 'answer_best/:id', to: 'answers#best' 
 
 end
