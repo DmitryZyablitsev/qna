@@ -1,0 +1,21 @@
+h1 Rewards#index
+- @rewards.each_with_index do |reward, index|
+  table.table
+    thead
+      tr
+        th[scope="col"]
+          | #
+        th[scope="col"]
+          | Question
+        th[scope="col"]
+          | Reward Image
+        th[scope="col"]
+          | Reward Name
+
+    tbody
+      tr
+        th[scope="row"]
+          =  index + 1
+        td = reward.question.title 
+        td = image_tag(reward.image, size: '100x100') 
+        td = reward.name 

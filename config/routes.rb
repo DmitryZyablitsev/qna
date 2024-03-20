@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
 
   resources :files, only: :destroy
+  resources :links, only: :destroy
+  resources :rewards, only: :index
 
   patch 'answer_best/:id', to: 'answers#best' 
 
