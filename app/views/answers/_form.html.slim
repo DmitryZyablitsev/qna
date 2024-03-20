@@ -1,11 +1,19 @@
 .answer-errors
   = render 'shared/errors', resource: @answer
-=form_with model: [@question, @answer], local: false, class: 'new-answer' do |f|
-  div
-    p= f.label :body, 'Answer'
-    p= f.text_area :body
+=form_with model: [@question, @answer], local: false, class: 'form-answer' do |f|
+  p= f.label :body, 'Answer'
+  p= f.text_area :body
 
-    p= f.label :files
-    p= f.file_field :files, multiple: true
- 
+  p= f.label :files
+  p= f.file_field :files, multiple: true
+
+  .links
+    br
+    p Links:
+    p= f.fields_for :links do |l|
+      = render 'link_fields', f: l
+
+    .add-link
+      = link_to_add_association 'add link', f, :links
+
   = f.submit 'Create a response'
