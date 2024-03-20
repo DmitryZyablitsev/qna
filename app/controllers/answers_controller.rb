@@ -24,6 +24,7 @@ class AnswersController < ApplicationController
   def best
     @question = @answer.question
     @question.update(best_answer: @answer)
+    @answer.author.rewards << @question.reward
     @best_answer = @question.best_answer
     @other_answers = @question.answers.where.not(id: @question.best_answer)
   end
@@ -39,6 +40,6 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body, files: []).merge(author_id: current_user.id)
+    params.require(:answer).permit(:body, files: [], links_attributes: [:name, :url]).merge(author_id: current_user.id)
   end
 end

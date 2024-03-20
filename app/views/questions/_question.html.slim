@@ -1,16 +1,11 @@
-div class="card mb-3 mt-3" style="max-width: 18rem"
-  div class="card-header text-center" 
-    = link_to question.title, question
-  div class="card-body"
-    p class="card-text" 
-      = question.body  
-  
-  -if question.files.attached?
-    - question.files.each do |file|
-      div(id="file-#{file.id}")
-        p= link_to file.filename.to_s, url_for(file)
-        = button_to 'Delete file', file_path(file), method: :delete, remote: true
-
+div class="card mb-3 mt-3" style="max-width: 35rem"
+  = render 'basic_question', question: question
+  .files
+    = render 'files/file', resource: question
+  .links
+    = render 'links/link', resource: question
+  .reward
+    = render 'rewards/reward', resource: question
 
 .question-errors
   = render 'shared/errors', resource: question
@@ -25,6 +20,14 @@ div class="card mb-3 mt-3" style="max-width: 18rem"
   div
     p= f.label :files
     p= f.file_field :files, multiple: true
+  .links
+    br
+    p Links:
+    p= f.fields_for :links do |l|
+      = render 'link_fields', f: l
+
+    .add-link
+      = link_to_add_association 'add link', f, :links
   = f.submit 'Save'
 
 - if current_user && current_user.author_of?(question)

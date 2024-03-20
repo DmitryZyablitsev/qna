@@ -1,15 +1,16 @@
-.question
-  = render @question
-
 p = link_to 'Back', questions_path
 
-.new-answer
-  p = render 'answers/form', answer: @answer, question: @question
+.question
+  = render 'question', question: @question
 
-.answers
-  h3 Answers
-  .best_answer
-    - if @best_answer
-      = render 'answers/best_answer', best_answer: @best_answer
-  .other_answers
-    = render partial: 'answers/answer', collection: @other_answers
+.basic-answer
+  .new-answer
+    = render 'answers/form', answer: @answer, question: @question
+
+  .answers
+    h3 Answers
+    .best_answer
+      - if @best_answer
+        = render 'answers/best_answer', best_answer: @best_answer
+    .other_answers
+      = render partial: 'answers/answer', collection: @other_answers
