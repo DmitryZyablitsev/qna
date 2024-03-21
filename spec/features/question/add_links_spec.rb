@@ -17,5 +17,9 @@ I'd like to be able to add links
 
     fill_in 'Link name', with: 'My gist'
     fill_in 'Url', with: gist_url
+
+    click_on 'Ask'
+
+    expect(page).to have_link 'My gist', href: gist_url
   end
 end
