@@ -6,25 +6,41 @@ As an question's author
 I'd like to be able to add links
 " do
   given(:user) { create(:user) }
-  given(:gist_url) { 'https://gist.github.com/DmitryZyablitsev/e07cf54bb8c3eacd8e7be06d7eeeacb0' }
+  given(:gist_url) { 'https://gist.github.com/DmitryZyablitsev/11b2834129c6e9897f680ae4fd6c59d8' }
+  given(:school_url) { 'https://thinknetica.com' }
 
-  scenario 'User adds several links when asking a question' do
-    sign_in(user)
-    visit new_question_path
+  describe 'User adds links when asks question', :js do
 
-    fill_in 'Title', with: 'Test question'
-    fill_in 'Body', with: 'text text text'
+    background do
+      sign_in(user)
+      visit new_question_path
 
-    fill_in 'Link name', with: 'My gist'
-    fill_in 'Url', with: gist_url
-    click_on 'add link'
+      fill_in 'Title', with: 'Test question'
+      fill_in 'Body', with: 'text text text'
 
-    fill_in 'Link name', with: 'My gist2'
-    fill_in 'Url', with: gist_url
+      fill_in 'Link name', with: 'My gist'
+    end
 
-    click_on 'Ask'
+    scenario 'with valid url' do
+      fill_in 'Url', with: gist_url
+      click_on 'add link'
 
-    expect(page).to have_link 'My gist', href: gist_url
-    expect(page).to have_link 'My gist2', href: gist_url
+      within all('.nested-fields').last do
+        fill_in 'Link name', with: 'My school'
+        fill_in 'Url', with: school_url
+      end
+
+      click_on 'Ask'
+
+      expect(page).to have_content 'Hello World'
+      expect(page).to have_link 'My school', href: school_url
+    end
+
+    scenario 'with invalid url' do      
+      fill_in 'Url', with: 'invalid_url'
+      click_on 'Ask'
+
+      expect(page).to have_content 'Links url is invalid'
+    end
   end
 end
