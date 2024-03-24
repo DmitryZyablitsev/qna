@@ -7,12 +7,13 @@
   p= f.label :files
   p= f.file_field :files, multiple: true
 
-  p Links:
-  p= f.fields_for :links do |l|
-    p= l.label :name, 'Link name'
-    p= l.text_field :name
+  .links
+    br
+    p Links:
+    p= f.fields_for :links do |l|
+      = render 'link_fields', f: l
 
-    p= l.label :url
-    p= l.text_field :url
+    .add-link
+      = link_to_add_association 'add link', f, :links
 
   = f.submit 'Create a response'

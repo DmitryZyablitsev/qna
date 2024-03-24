@@ -16,7 +16,7 @@ div class="card mb-3 mt-3" style="max-width: 18rem"
     ul
       -question.links.each do |link|
         - if link.gist_url?
-            li.gist = javascript_include_tag(link.url + '.js')
+          li= javascript_include_tag(link.url + '.js')
         -else
           li= link_to link.name, link.url
 

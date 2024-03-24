@@ -7,22 +7,50 @@ I'd like to be able to add links
 " do
   given(:user) { create(:user) }
   given!(:question) { create(:question, author: user) }
-  given(:gist_url) { 'https://gist.github.com/DmitryZyablitsev/e07cf54bb8c3eacd8e7be06d7eeeacb0' }
+  given(:gist_url) { 'https://gist.github.com/DmitryZyablitsev/11b2834129c6e9897f680ae4fd6c59d8' }
+  given(:school_url) { 'https://thinknetica.com' }
 
-  scenario 'User adds link when asks answer', :js do
-    sign_in(user)
-    visit question_path(question)
 
-    within '.new-answer' do
-      fill_in 'Answer', with: 'My answer'
-      fill_in 'Link name', with: 'My gist'
-      fill_in 'Url', with: gist_url
+  describe 'User adds links when asks answer' do
+    background do
+      sign_in(user)
+      visit question_path(question)
 
-      click_on 'Create a response'
+      within '.new-answer' do
+        fill_in 'Answer', with: 'My answer'
+        fill_in 'Link name', with: 'My gist'
+      end
     end
-    
-    within '.other_answers' do
-      expect(page).to have_link 'My gist', href: gist_url
+
+    scenario 'with valid url', :js do
+      within '.new-answer' do
+        fill_in 'Url', with: gist_url
+
+        click_on 'add link'
+
+        within all('.nested-fields').last do
+          fill_in 'Link name', with: 'My school'
+          fill_in 'Url', with: school_url
+        end
+
+        click_on 'Create a response'
+      end
+
+      within '.answers' do
+        save_and_open_page
+        expect(page).to have_content 'Hello World'
+        expect(page).to have_link 'My school', href: school_url
+      end
+    end
+
+    scenario 'with invalid url' do
+      within '.new-answer' do
+        fill_in 'Url', with: 'invalid_url'
+
+        click_on 'Create a response'
+
+        expect(page).to have_content 'Links url is invalid'
+      end
     end
   end
 end
