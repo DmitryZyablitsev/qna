@@ -3,8 +3,8 @@
 
 p = link_to 'Back', questions_path
 
-.new-answer
-  p = render 'answers/form', answer: @answer, question: @question
+
+= render 'answers/form', answer: @answer, question: @question
 
 .answers
   h3 Answers
