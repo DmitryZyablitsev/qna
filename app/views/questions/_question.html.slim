@@ -12,14 +12,16 @@ div class="card mb-3 mt-3" style="max-width: 18rem"
         = button_to 'Delete file', file_path(file), method: :delete, remote: true
 
   .links
-    p Links:
-    ul
-      -question.links.each do |link|
-        - if link.gist_url?
-          li= javascript_include_tag(link.url + '.js')
-        -else
-          li= link_to link.name, link.url
-
+    - if question.links.present?
+      p Links:
+      ul
+        -question.links.each do |link|
+          div(id="link_#{link.id}")
+            - if link.gist_url?
+              li= javascript_include_tag(link.url + '.js')
+            -else
+              li= link_to link.name, link.url
+            = button_to 'Delete link', link_path(link), method: :delete, remote: true
 .question-errors
   = render 'shared/errors', resource: question
 
