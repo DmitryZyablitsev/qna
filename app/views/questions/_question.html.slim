@@ -3,25 +3,12 @@ div class="card mb-3 mt-3" style="max-width: 18rem"
     = link_to question.title, question
   div class="card-body"
     p class="card-text" 
-      = question.body  
-  
-  -if question.files.attached?
-    - question.files.each do |file|
-      div(id="file-#{file.id}")
-        p= link_to file.filename.to_s, url_for(file)
-        = button_to 'Delete file', file_path(file), method: :delete, remote: true
-
+      = question.body
+  .files
+    = render 'files/file', resource: question
   .links
-    - if question.links.present?
-      p Links:
-      ul
-        -question.links.each do |link|
-          div(id="link_#{link.id}")
-            - if link.gist_url?
-              li= javascript_include_tag(link.url + '.js')
-            -else
-              li= link_to link.name, link.url
-            = button_to 'Delete link', link_path(link), method: :delete, remote: true
+    = render 'links/link', resource: question
+
 .question-errors
   = render 'shared/errors', resource: question
 

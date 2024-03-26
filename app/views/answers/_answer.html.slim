@@ -1,20 +1,9 @@
 div(id="answer-#{answer.id}") 
   p= answer.body
+  .files
+    = render 'files/file', resource: answer
   .links
-    - if answer.links.present?
-      p Links:
-      ul
-        -answer.links.each do |link|
-          div(id="link_#{link.id}")
-            - if link.gist_url?
-              li= javascript_include_tag(link.url + '.js')
-            -else
-              li= link_to link.name, link.url
-            = button_to 'Delete link', link_path(link), method: :delete, remote: true
-
-  - if answer.files.attached?
-    - answer.files.each do |file|
-      p= link_to file.filename.to_s, url_for(file)
+    = render 'links/link', resource: answer
 
   -if current_user&.author_of?(@question) && @question.best_answer_id !=answer.id 
     p= link_to 'Best',"/answer_best/#{answer.id}", method: :patch, remote: true

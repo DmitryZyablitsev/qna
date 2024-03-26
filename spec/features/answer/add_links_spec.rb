@@ -11,7 +11,7 @@ I'd like to be able to add links
   given(:school_url) { 'https://thinknetica.com' }
 
 
-  describe 'User adds links when asks answer' do
+  describe 'User adds links when asks answer', :js do
     background do
       sign_in(user)
       visit question_path(question)
@@ -22,7 +22,7 @@ I'd like to be able to add links
       end
     end
 
-    scenario 'with valid url', :js do
+    scenario 'with valid url' do
       within '.new-answer' do
         fill_in 'Url', with: gist_url
 
@@ -37,7 +37,6 @@ I'd like to be able to add links
       end
 
       within '.answers' do
-        save_and_open_page
         expect(page).to have_content 'Hello World'
         expect(page).to have_link 'My school', href: school_url
       end
