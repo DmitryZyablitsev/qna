@@ -18,7 +18,7 @@ I'd like to be able to add links
       fill_in 'Title', with: 'Test question'
       fill_in 'Body', with: 'text text text'
 
-      fill_in 'Link name', with: 'My gist'
+      fill_in 'Link name', with: 'My link'
     end
 
     scenario 'with valid url' do
@@ -42,5 +42,35 @@ I'd like to be able to add links
 
       expect(page).to have_content 'Links url is invalid'
     end
+  end
+
+  describe 'Author adds links when edit question', :js do
+    background do
+      sign_in(user)
+      visit new_question_path
+
+      click_on 'Edit question'
+      click_on 'add link'
+    end
+
+    scenario 'with valid url' do
+      within '.question' do
+        fill_in 'Link name', with: 'My link'
+        fill_in 'Url', with: school_url
+        click_on 'add link'
+        within '.nested-fields' do
+          fill_in 'Link name', with: 'My gist'
+          fill_in 'Url', with: gist_url
+        end
+        click_on 'Save'
+        within '.links' do
+          expect(page).to have_link 'My link', href: school_url
+          expect(page).to have_content 'Hello World'
+        end
+      end      
+    end
+
+    scenario 'with invalid url'
+
   end
 end
