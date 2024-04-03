@@ -1,7 +1,7 @@
 p = link_to 'Back', questions_path
 
 .question
-  = render @question
+  = render 'question', question: @question
 
 .basic-answer
   .new-answer
