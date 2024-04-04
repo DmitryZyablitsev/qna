@@ -21,8 +21,6 @@ feature 'User can add reward for best answer to question', "
       attach_file 'Image', "#{Rails.root}/public/img/reward.jpg"
       
       click_on 'Ask'
-      
-      # save_and_open_page
 
       expect(page).to have_content 'Test question'
       expect(page).to have_content 'text text text'
