@@ -1,0 +1,5 @@
+- if resource.reward.present?
+  p Reward:
+  = resource.reward.name
+  br
+  /!= image_tag(resource.reward.image, size: '100x100')
