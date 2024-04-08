@@ -12,6 +12,7 @@ import 'jquery'
 import "@nathanvda/cocoon"
 import "utillities/answers"
 import "utillities/question"
+import "utillities/add_answer"
 
 Rails.start()
 Turbolinks.start()
