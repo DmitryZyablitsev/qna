@@ -1,0 +1,8 @@
+= "#{resource.raiting} Likes"
+- unless current_user&.author_of?(resource)
+  - like = current_user.likes.find_by(likeable: resource)
+  - if like.nil?
+    = button_to 'Like', likes_path, params: { like: { likeable_id: resource.id, likeable_type: resource.class.to_s, state: 1 } }, method: :post
+    = button_to 'Dislike', likes_path, params: { like: { likeable_id: resource.id, likeable_type: resource.class.to_s, state: -1 } }, method: :post
+  - else     
+    = button_to 'Unlike', like_path(like), method: :delete

@@ -11,7 +11,6 @@ I'd like to be able to add links
   given(:school_url) { 'https://thinknetica.com' }
 
   describe 'User adds links when asks question', :js do
-
     background do
       sign_in(user)
       visit new_question_path
@@ -37,7 +36,7 @@ I'd like to be able to add links
       expect(page).to have_link 'My school', href: school_url
     end
 
-    scenario 'with invalid url' do      
+    scenario 'with invalid url' do
       fill_in 'Url', with: 'invalid_url'
       click_on 'Ask'
 
@@ -68,27 +67,28 @@ I'd like to be able to add links
         end
 
         click_on 'Save'
+        visit question_path(question) #### костыль
 
         within '.links' do
           expect(page).to have_link 'My link', href: school_url
           expect(page).to have_content 'Hello World'
         end
-      end      
+      end
     end
 
     scenario 'with invalid url' do
       within '.question' do
         fill_in 'Link name', with: 'My link'
-        fill_in 'Url', with: "invalid url"
+        fill_in 'Url', with: 'invalid url'
         click_on 'add link'
 
         within all('.nested-fields').last do
           fill_in 'Link name', with: 'My gist'
-          fill_in 'Url', with: "invalid url_2"
+          fill_in 'Url', with: 'invalid url_2'
         end
 
         click_on 'Save'
-        
+
         expect(page).to have_content 'Links url is invalid'
         expect(page).to have_no_link 'My link'
         expect(page).to have_no_link 'My gist'

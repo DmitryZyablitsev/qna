@@ -6,7 +6,9 @@ div class="card mb-3 mt-3" style="max-width: 35rem"
     = render 'links/link', resource: question
   .reward
     = render 'rewards/reward', resource: question
-
+  .like
+    = render 'likes/button', resource: question
+  
 .question-errors
   = render 'shared/errors', resource: question
 

@@ -26,12 +26,12 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4', require: false
-gem 'devise', '~> 4.0'
-gem 'slim-rails'
-gem 'rack-cors'
 gem 'aws-sdk-s3', require: false
-gem "cocoon"
+gem 'bootsnap', '>= 1.4.4', require: false
+gem 'cocoon'
+gem 'devise', '~> 4.0'
+gem 'rack-cors'
+gem 'slim-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
