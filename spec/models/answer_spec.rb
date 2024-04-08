@@ -10,7 +10,7 @@ RSpec.describe Answer do
 
   it { is_expected.to validate_length_of(:body).is_at_least(3).on(:create) }
 
-  it { should accept_nested_attributes_for :links }
+  it { is_expected.to accept_nested_attributes_for :links }
 
   it 'has many attached files' do
     expect(described_class.new.files).to be_an_instance_of(ActiveStorage::Attached::Many)

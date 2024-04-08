@@ -20,6 +20,6 @@ but cannot delete someone else's link
     click_on 'Ask'
     click_on 'Delete link'
 
-    expect(page).to_not have_content 'My school'
+    expect(page).to have_no_content 'My school'
   end
 end

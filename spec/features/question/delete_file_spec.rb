@@ -12,14 +12,14 @@ but I can't delete someone else's file
     sign_in(user)
 
     visit question_path(question)
-    click_on'Edit question'
+    click_on 'Edit question'
 
     within '.question' do
       attach_file 'File', "#{Rails.root}/spec/rails_helper.rb"
       click_on 'Save'
 
       click_on 'Delete file'
- 
+
       expect(page).to have_no_link 'rails_helper.rb'
     end
   end
@@ -30,5 +30,4 @@ but I can't delete someone else's file
 
     expect(page).to have_no_link 'rails_helper.rb'
   end
-
 end

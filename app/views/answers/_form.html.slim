@@ -1,6 +1,6 @@
 .answer-errors
   = render 'shared/errors', resource: @answer
-=form_with model: [@question, @answer], local: false, class: 'd-none', html: { id: "form-answer" } do |f|
+=form_with model: [@question, @answer], local: false, data: { type: :json }, class: 'd-none', html: { id: "form-answer" } do |f|
   p= f.label :body, 'Answer'
   p= f.text_area :body
 
@@ -18,6 +18,6 @@
 
   = f.submit 'Create a response'
 
-= link_to 'Create answer', '#', class: 'create-answer-link'
-= link_to 'Roll up', '#', class: 'roll-up-answer-form d-none'
-
+- if current_user
+  = link_to 'Create answer', '#', class: 'create-answer-link'
+  = link_to 'Roll up', '#', class: 'roll-up-answer-form d-none'

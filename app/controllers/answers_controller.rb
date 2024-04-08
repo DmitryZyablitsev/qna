@@ -7,7 +7,16 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.build(answer_params)
-    @answer.save
+
+    respond_to do |format|
+      if @answer.save
+        format.json { render json: @answer }
+      else
+        format.json do
+          render json: @answer.errors.full_messages, status: :unprocessable_entity
+        end
+      end
+    end
   end
 
   def update
@@ -40,6 +49,6 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body, files: [], links_attributes: [:name, :url]).merge(author_id: current_user.id)
+    params.require(:answer).permit(:body, files: [], links_attributes: %i[name url]).merge(author_id: current_user.id)
   end
 end

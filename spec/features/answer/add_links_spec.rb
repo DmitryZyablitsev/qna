@@ -10,13 +10,13 @@ I'd like to be able to add links
   given(:gist_url) { 'https://gist.github.com/DmitryZyablitsev/11b2834129c6e9897f680ae4fd6c59d8' }
   given(:school_url) { 'https://thinknetica.com' }
 
-
   describe 'User adds links when asks answer', :js do
     background do
       sign_in(user)
       visit question_path(question)
 
       within '.new-answer' do
+        click_on 'Create answer'
         fill_in 'Answer', with: 'My answer'
         fill_in 'Link name', with: 'My gist'
       end
@@ -34,6 +34,7 @@ I'd like to be able to add links
         end
 
         click_on 'Create a response'
+        visit question_path(question) #### костыль
       end
 
       within '.answers' do
