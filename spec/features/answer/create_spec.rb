@@ -13,6 +13,7 @@ an answer to the question.
       sign_in(user)
 
       visit question_path(question)
+      click_on 'Create answer'
     end
 
     scenario 'can write an answer', :js do

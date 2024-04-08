@@ -2,7 +2,6 @@ document.addEventListener('turbolinks:load',function(){
   $('.question').on('click', '.edit-question-link', function(e) {
     e.preventDefault();
     $(this).hide();
-    console.log(this)
     $('form#edit-question').removeClass('d-none');
   })
 });

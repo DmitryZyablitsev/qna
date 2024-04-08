@@ -1,6 +1,6 @@
 .answer-errors
   = render 'shared/errors', resource: @answer
-=form_with model: [@question, @answer], local: false, class: 'form-answer' do |f|
+=form_with model: [@question, @answer], local: false, class: 'd-none', html: { id: "form-answer" } do |f|
   p= f.label :body, 'Answer'
   p= f.text_area :body
 
@@ -17,3 +17,7 @@
       = link_to_add_association 'add link', f, :links
 
   = f.submit 'Create a response'
+
+= link_to 'Create answer', '#', class: 'create-answer-link'
+= link_to 'Roll up', '#', class: 'roll-up-answer-form d-none'
+
