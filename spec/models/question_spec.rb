@@ -9,8 +9,8 @@ RSpec.describe Question do
   it { is_expected.to validate_presence_of :title }
   it { is_expected.to validate_presence_of :body }
 
-  it { should accept_nested_attributes_for :links }
-  it { should accept_nested_attributes_for :reward }
+  it { is_expected.to accept_nested_attributes_for :links }
+  it { is_expected.to accept_nested_attributes_for :reward }
 
   it 'has many attached files' do
     expect(described_class.new.files).to be_an_instance_of(ActiveStorage::Attached::Many)

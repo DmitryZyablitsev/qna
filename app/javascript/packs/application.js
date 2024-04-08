@@ -11,6 +11,7 @@ import "channels"
 import 'jquery'
 import "@nathanvda/cocoon"
 import "utillities/answers"
+import "utillities/likes"
 import "utillities/question"
 import "utillities/add_answer"
 

@@ -1,4 +1,26 @@
 require 'rails_helper'
 
-RSpec.describe LinksController, type: :controller do
+RSpec.describe LinksController do
+  describe 'DELETE #destroy' do
+    let(:user) { create(:user) }
+    let(:user2) { create(:user) }
+    let!(:question) { create(:question, author: user) }
+    let!(:link) { create(:link, linkable: question) }
+
+    it 'when user is author delete the link' do
+      login(user)
+
+      expect do
+        delete :destroy, params: { id: link }, format: :js
+      end.to change(Link, :count).by(-1)
+    end
+
+    it 'The non-author cannot delete the link' do
+      login(user2)
+
+      expect do
+        delete :destroy, params: { id: link }, format: :js
+      end.not_to change(Answer, :count)
+    end
+  end
 end

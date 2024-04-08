@@ -5,9 +5,9 @@ RSpec.describe User do
   let(:user2) { create(:user) }
   let(:question) { create(:question, author: user) }
 
-  it { should have_many(:questions).dependent(:destroy) }
-  it { should have_many(:answers).dependent(:destroy) }
-  it { should have_many(:rewards).dependent(:destroy) }
+  it { is_expected.to have_many(:questions).dependent(:destroy) }
+  it { is_expected.to have_many(:answers).dependent(:destroy) }
+  it { is_expected.to have_many(:rewards).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_presence_of :password }

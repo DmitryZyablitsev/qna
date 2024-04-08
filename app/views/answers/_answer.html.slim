@@ -1,4 +1,4 @@
-div(id="answer-#{answer.id}") 
+div(class="card mb-3 mt-3" style="max-width: 35rem" id="answer-#{answer.id}") 
   p= answer.body
   .files
     = render 'files/file', resource: answer
@@ -19,3 +19,5 @@ div(id="answer-#{answer.id}")
     p= f.label :files
     p= f.file_field :files, multiple: true
     = f.submit 'Save'
+  .like
+    = render 'likes/button', resource: answer

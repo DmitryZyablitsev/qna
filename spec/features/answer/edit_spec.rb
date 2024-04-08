@@ -37,7 +37,7 @@ I'd like ot be able to edit my answer
       end
 
       scenario 'edits his answer with attached file', :js do
-        within '.answers' do          
+        within '.answers' do
           attach_file 'File', ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
           click_on 'Save'
 
