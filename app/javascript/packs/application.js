@@ -7,6 +7,7 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 
+import "@rails/actioncable"
 import "channels"
 import 'jquery'
 import "@nathanvda/cocoon"
@@ -18,3 +19,7 @@ import "utillities/add_answer"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+let App = App || {};
+App.cable = ActionCable.createConsumer();

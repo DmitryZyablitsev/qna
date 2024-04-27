@@ -21,6 +21,8 @@ module Qna
     
     config.active_storage.service = :yandex
 
+    config.action_cable.disable_request_forgery_protection = false
+
     config.generators do |g|
       g.test_framework :rspec,
                        view_specs: false,

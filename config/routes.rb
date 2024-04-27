@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :rewards, only: :index
   resources :likes, only: %i[create destroy]
 
-  patch 'answer_best/:id', to: 'answers#best' 
+  patch 'answer_best/:id', to: 'answers#best'
 
+  mount ActionCable.server => '/cable'
 end
