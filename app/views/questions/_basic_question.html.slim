@@ -1,5 +1,5 @@
 div class="card-header text-center" 
-  = link_to question.title, question
+  = link_to question.title, question, :data => { :question_id => question.id }
 div class="card-body"
   p class="card-text" 
     = question.body

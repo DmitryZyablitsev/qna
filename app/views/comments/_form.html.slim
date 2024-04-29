@@ -1,0 +1,9 @@
+.comment-errors
+
+= form_with model: Comment.new, local: false, data: { type: :json }, class: 'form-comment' do |f|
+  p= f.label :body, 'New comment'
+  p= f.text_area :body
+  = f.hidden_field :commentable_type, value: commentable.class.to_s
+  = f.hidden_field :commentable_id, value: commentable.id
+
+  p= f.submit 'Add comment'

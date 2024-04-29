@@ -9,6 +9,9 @@ div class="card mb-3 mt-3" style="max-width: 35rem"
   .like
     = render 'likes/button', resource: question
   
+  .comments
+    = render partial: 'comments/comments', locals: { resource: question}
+  
 .question-errors
   = render 'shared/errors', resource: question
 
@@ -23,13 +26,7 @@ div class="card mb-3 mt-3" style="max-width: 35rem"
     p= f.label :files
     p= f.file_field :files, multiple: true
   .links
-    br
-    p Links:
-    p= f.fields_for :links do |l|
-      = render 'link_fields', f: l
-
-    .add-link
-      = link_to_add_association 'add link', f, :links
+    = render 'links/form', f: f
   = f.submit 'Save'
 
 - if current_user && current_user.author_of?(question)

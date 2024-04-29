@@ -8,13 +8,7 @@
   p= f.file_field :files, multiple: true
 
   .links
-    br
-    p Links:
-    p= f.fields_for :links do |l|
-      = render 'link_fields', f: l
-
-    .add-link
-      = link_to_add_association 'add link', f, :links
+    = render 'links/form', f: f   
 
   = f.submit 'Create a response'
 

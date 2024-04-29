@@ -21,3 +21,5 @@ div(class="card mb-3 mt-3" style="max-width: 35rem" id="answer-#{answer.id}")
     = f.submit 'Save'
   .like
     = render 'likes/button', resource: answer
+  .comments
+    = render partial: 'comments/comments', locals: { resource: answer}

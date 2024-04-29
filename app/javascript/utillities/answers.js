@@ -10,6 +10,8 @@ document.addEventListener('turbolinks:load',function(){
     let answer = e.detail[0];
 
     $('.other_answers').append('<p>' + answer.body + '</p>');
+    $('.answer-errors').empty()
+    $('.roll-up-answer-form').trigger('click');
   })
     .on('ajax:error', function(e) {
       let errors = e.detail[0];

@@ -8,6 +8,8 @@ RSpec.describe User do
   it { is_expected.to have_many(:questions).dependent(:destroy) }
   it { is_expected.to have_many(:answers).dependent(:destroy) }
   it { is_expected.to have_many(:rewards).dependent(:destroy) }
+  it { is_expected.to have_many(:likes).dependent(:destroy) }
+  it { is_expected.to have_many(:comments).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_presence_of :password }

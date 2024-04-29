@@ -19,3 +19,8 @@ programming_questions.first.answers.create!([
                                               { body: 'aaaaaaaaaaa', author: user3},
                                               { body: 'vvvvvvvvvvvv', author: user2 }
                                             ])
+
+programming_questions.first.comments.create!([
+  { body: 'comment_1', user: user },
+  { body: 'comment_2', user: user }
+])
