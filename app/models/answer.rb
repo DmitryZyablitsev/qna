@@ -1,6 +1,7 @@
 class Answer < ApplicationRecord
   include Linkable
   include Likeable
+  include Commentable
 
   has_many_attached :files
 

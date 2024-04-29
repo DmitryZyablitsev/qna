@@ -3,6 +3,8 @@ class AnswersController < ApplicationController
   before_action :find_question, only: %i[create]
   before_action :find_answer, only: %i[update destroy best]
 
+  after_action :publish_answer, only: [:create]
+
   def new; end
 
   def create
@@ -39,6 +41,14 @@ class AnswersController < ApplicationController
   end
 
   private
+
+  def publish_answer
+    return if @answer.errors.any?
+
+    ActionCable.server.broadcast(
+      "QuestionsChannel/#{@answer.question_id}", { answer: @answer }
+    )
+  end
 
   def find_answer
     @answer = Answer.find(params[:id])

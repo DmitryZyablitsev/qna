@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Question do
   it { is_expected.to have_many(:answers).dependent(:destroy) }
   it { is_expected.to have_many(:links).dependent(:destroy) }
+  it { is_expected.to have_many(:comments).dependent(:destroy) }
   it { is_expected.to have_one(:reward).dependent(:destroy) }
   it { is_expected.to belong_to :author }
 

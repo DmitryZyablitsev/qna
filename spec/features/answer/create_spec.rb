@@ -47,4 +47,31 @@ an answer to the question.
 
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
+
+  describe 'mulitple sessions', :js do 
+    scenario "answer appears on another user's page" do
+      Capybara.using_session('user') do
+        sign_in(user)
+        visit question_path(question)
+      end
+
+      Capybara.using_session('guest') do
+        visit question_path(question)
+      end
+
+      Capybara.using_session('user') do
+        click_on 'Create answer'
+        fill_in 'Answer', with: 'Test answer'
+        click_on 'Create a response'
+
+
+
+        expect(page).to have_content 'Test answer'
+      end
+
+      Capybara.using_session('guest') do
+        expect(page).to have_content 'Test answer'
+      end
+    end
+  end
 end

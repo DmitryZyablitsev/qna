@@ -1,0 +1,7 @@
+div class="comments-#{resource.class.to_s.downcase}-#{resource.id}"
+  - resource.comments.each do |comment|
+    = render partial: 'comments/comment', locals: { comment: comment }
+
+-if current_user 
+  .new-comment
+      = render partial: 'comments/form', locals: { commentable: resource }
