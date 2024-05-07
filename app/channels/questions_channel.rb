@@ -1,6 +1,5 @@
 class QuestionsChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "QuestionsChannel"
     stream_from "QuestionsChannel"
   end
 
