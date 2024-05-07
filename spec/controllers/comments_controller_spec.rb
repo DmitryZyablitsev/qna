@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
   let!(:question) { create(:question, author: user) }
   let!(:comment) { create(:comment, user: user) }
 
@@ -11,7 +11,7 @@ RSpec.describe CommentsController, type: :controller do
         login(user)
 
         expect do
-          post :create, params: { comment: { commentable_id: question.id, commentable_type: question.class.to_s } }
+          post :create, params: { comment: { body: comment.body, commentable_id: question.id, commentable_type: question.class.to_s }, format: :json }
         end.to change(Comment, :count).by(1)
       end
     end
