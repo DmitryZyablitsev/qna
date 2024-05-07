@@ -16,6 +16,12 @@ RSpec.describe CommentsController, type: :controller do
       end
     end
 
-    context 'with invalid attributes' 
+    context 'with invalid attributes' do
+      it 'does not save a new comment in the database' do
+        expect do
+          post :create, params: { comment: { commentable_id: '', commentable_type: '' }, format: :json }
+        end.not_to change(Comment, :count)
+      end        
+    end
   end
 end
