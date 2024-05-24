@@ -279,6 +279,8 @@ Devise.setup do |config|
   config.omniauth :vkontakte,
                   Rails.application.credentials[Rails.env.to_sym][:vkontakte][:app_id],
                   Rails.application.credentials[Rails.env.to_sym][:vkontakte][:app_secret],
+                  redirect_url: 'http://localhost/',
+                  # callback_url: 'http://localhost:3000/auth/vkontakte/callback'
                   # token_params: { parse: :json },
                   scope: 'email'
 
