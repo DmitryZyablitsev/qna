@@ -38,11 +38,14 @@ gem 'omniauth-github'
 gem 'omniauth-vkontakte'
 gem "omniauth-rails_csrf_protection"
 
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 6.1.0'
+  gem "letter_opener"
+  gem 'capybara-email'
 end
 
 group :development do
@@ -59,6 +62,7 @@ group :development do
   gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', require: false
   gem 'spring'
+  
 end
 
 group :test do

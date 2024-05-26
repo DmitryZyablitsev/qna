@@ -12,7 +12,7 @@ RSpec.describe LikesController do
         login(user)
 
         expect do
-          post :create, params: { like: { likeable_id: question.id, likeable_type: question.class.to_s } }
+          post :create, params: { like: { likeable_id: question.id, likeable_type: question.class.to_s, state: 1 }, format: :html  }
         end.to change(Like, :count).by(1)
       end
     end

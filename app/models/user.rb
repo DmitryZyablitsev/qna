@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :authorizations, dependent: :destroy
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github, :vkontakte]
+  # :lockable, :timeoutable, :trackable
+  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github, :vkontakte]
 
   def self.find_for_oauth(auth)
     FindForOauth.new(auth).call

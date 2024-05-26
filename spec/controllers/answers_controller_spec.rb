@@ -13,7 +13,7 @@ RSpec.describe AnswersController do
         expect do
           post :create,
                params: { question_id: question.id,
-                         answer: attributes_for(:answer, question_id: question.id, author_id: user.id) }, format: :js
+                         answer: attributes_for(:answer, question_id: question.id, author_id: user.id) }, format: :json
         end.to change(Answer, :count).by(1)
       end
     end
