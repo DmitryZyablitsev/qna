@@ -8,10 +8,9 @@ div(class="card mb-3 mt-3" style="max-width: 35rem" id="answer-#{answer.id}")
   -if current_user&.author_of?(@question) && @question.best_answer_id !=answer.id 
     p= link_to 'Best',"/answer_best/#{answer.id}", method: :patch, remote: true
 
-  -if current_user&.author_of?(answer)
-    p
-      = link_to 'Edit','#', class: 'edit-answer-link', data: { answer_id: answer.id }
-      = button_to 'Delete answer', answer_path(answer), method: :delete, remote: true
+  - if can?(:update, answer)
+    p= link_to 'Edit','#', class: 'edit-answer-link', data: { answer_id: answer.id }
+    p= button_to 'Delete answer', answer_path(answer), method: :delete, remote: true
 
   = form_with model: answer, local: false, class: 'd-none', html: { id: "edit-answer-#{answer.id}" } do |f|
     p= f.label :body, 'Your answer'

@@ -2,9 +2,10 @@ User.destroy_all
 Question.destroy_all
 
 user, user2, user3 = User.create!([
-                             { email: 'user@develop.com', password: '12345678' },
-                             { email: 'user2@develop.com', password: '12345678' },
-                             { email: 'user3@develop.com', password: '12345678' }
+                             { email: 'user@develop.com', password: '12345678', password_confirmation: '12345678', confirmed_at: Time.now },
+                             { email: 'user2@develop.com', password: '12345678', password_confirmation: '12345678', confirmed_at: Time.now },
+                             { email: 'user3@develop.com', password: '12345678', password_confirmation: '12345678', confirmed_at: Time.now },
+                             { email: 'admin@develop.com', password: '12345678', password_confirmation: '12345678', confirmed_at: Time.now, admin: true }
                            ])
 
 programming_questions = user3.questions.create!([

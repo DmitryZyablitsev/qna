@@ -2,6 +2,7 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_question, only: %i[create]
   before_action :find_answer, only: %i[update destroy best]
+  authorize_resource
 
   after_action :publish_answer, only: [:create]
 
@@ -27,8 +28,6 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    return head :forbidden unless current_user.author_of?(@answer)
-
     @answer.destroy
   end
 

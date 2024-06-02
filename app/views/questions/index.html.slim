@@ -1,5 +1,6 @@
 h1 index All questions
-= link_to 'Ask question', new_question_path
+- if can?(:create, Question)
+  = link_to 'Ask question', new_question_path
 .question-list
   - @questions.each do |question|
     div class="question-#{question.id} card mb-3 mt-3" style="max-width: 18rem"

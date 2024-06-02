@@ -29,6 +29,6 @@ div class="card mb-3 mt-3" style="max-width: 35rem"
     = render 'links/form', f: f
   = f.submit 'Save'
 
-- if current_user && current_user.author_of?(question)
+- if can?(:update, question)
   = link_to 'Edit question', '#', class: 'edit-question-link'
   = button_to 'Delete question', question_path(question), method: :delete

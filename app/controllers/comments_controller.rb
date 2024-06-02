@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(comment_params)
+    authorize! :create, @comment
 
     respond_to do |format|
       if @comment.save
