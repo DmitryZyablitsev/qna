@@ -37,6 +37,7 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-vkontakte'
 gem "omniauth-rails_csrf_protection"
+gem 'cancancan'
 
 
 group :development, :test do

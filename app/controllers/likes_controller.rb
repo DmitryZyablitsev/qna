@@ -3,9 +3,10 @@ class LikesController < ApplicationController
 
   def create
     @like = current_user.likes.new(like_params)
+    authorize! :create, @like
 
     respond_to do |format|
-      if @like.likeable.author != current_user && @like.save
+      if @like.save
         format.html { render partial: 'likes/button', locals: { resource: @like.likeable } }
       else
         format.html do
@@ -17,6 +18,8 @@ class LikesController < ApplicationController
 
   def destroy
     @like = current_user.likes.find(params[:id])
+    authorize! :destroy, @like
+
     @like.destroy
 
     redirect_back(fallback_location: questions_url)

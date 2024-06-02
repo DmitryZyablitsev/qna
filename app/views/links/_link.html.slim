@@ -7,4 +7,5 @@
           li= javascript_include_tag(link.url + '.js')
         -else
           li= link_to link.name, link.url
-        = button_to 'Delete link', link_path(link), method: :delete, remote: true
+        - if can? :delete, Link
+          = button_to 'Delete link', link_path(link), method: :delete, remote: true

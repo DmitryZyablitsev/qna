@@ -12,6 +12,6 @@
 
   = f.submit 'Create a response'
 
-- if current_user
+- if can?(:create, answer)
   = link_to 'Create answer', '#', class: 'create-answer-link'
   = link_to 'Roll up', '#', class: 'roll-up-answer-form d-none'
