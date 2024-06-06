@@ -15,12 +15,20 @@ RSpec.describe LinksController do
       end.to change(Link, :count).by(-1)
     end
 
-    it 'The non-author cannot delete the link' do
-      login(user2)
+    context 'The non-author' do
+      before { login(user2) }
 
-      expect do
+      it 'cannot delete the link' do
+        expect do
+          delete :destroy, params: { id: link }, format: :js
+        end.not_to change(Answer, :count)
+      end
+
+      it 'redirect @answer.question' do
         delete :destroy, params: { id: link }, format: :js
-      end.not_to change(Answer, :count)
+
+        expect(response).to redirect_to link.linkable
+      end
     end
   end
 end

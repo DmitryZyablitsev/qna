@@ -1,5 +1,4 @@
 div class='like-rating'= "#{resource.raiting} Likes"
- / есть ли другой способ?
 - if can?(:manage, Like) && resource.author != current_user
   - like = current_user.likes.find_by(likeable: resource)  
   - if like.nil?
