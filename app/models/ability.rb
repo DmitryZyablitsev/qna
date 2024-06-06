@@ -28,6 +28,8 @@ class Ability
     guest_abilities
     can :create, [Question, Answer, Comment]
     can [:update, :destroy], [Question, Answer], author_id: user.id 
+    can :best, Answer, question: { author_id: user.id }
+
     can :update, Comment, user_id: user.id
     can :manage, Like
     cannot :manage, Like, likeable: { author_id: user.id }, user_id: user.id

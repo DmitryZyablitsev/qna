@@ -6,6 +6,10 @@ class AnswersController < ApplicationController
 
   after_action :publish_answer, only: [:create]
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to @answer.question, alert: exception.default_message = 'The action is impossible'
+  end
+
   def new; end
 
   def create

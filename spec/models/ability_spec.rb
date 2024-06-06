@@ -22,9 +22,9 @@ RSpec.describe Ability do
   describe 'for user' do
     let(:user) { create :user }
     let(:other_user) { create :user }
-    let(:question) { create :question, author_id: user.id}
-    let(:othe_question) { create :question, author_id: other_user.id}
-    let(:answer) { create :answer, author_id: user.id}    
+    let(:question) { create :question, author_id: user.id }
+    let(:othe_question) { create :question, author_id: other_user.id }
+    let(:answer) { create :answer, author_id: user.id }    
 
     it { should_not be_able_to :manage, :all }
     it { should be_able_to :read, :all }
@@ -42,6 +42,7 @@ RSpec.describe Ability do
     it { should_not be_able_to :update, create(:answer, author: other_user) }
     it { should be_able_to :destroy, answer }
     it { should_not be_able_to :destroy, create(:answer, author: other_user) }
+    it { should be_able_to :best, create(:answer, question: question, author: user) }
 
     # Comment
     it { should be_able_to :create, Comment }

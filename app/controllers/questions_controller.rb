@@ -5,6 +5,9 @@ class QuestionsController < ApplicationController
 
   after_action :publish_question, only: [:create]
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to @question, alert: exception.default_message = 'The action is impossible'
+  end
 
   def index
     @questions = Question.all
@@ -59,8 +62,7 @@ class QuestionsController < ApplicationController
 
   def publish_question
     return if @question.errors.any?
-    ActionCable.server.broadcast(
-      'QuestionsChannel', { question: @question}
-    )
+
+    ActionCable.server.broadcast('QuestionsChannel', { question: @question })
   end
 end
