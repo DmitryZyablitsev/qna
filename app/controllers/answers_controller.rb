@@ -13,10 +13,10 @@ class AnswersController < ApplicationController
   def new; end
 
   def create
-    @answer = @question.answers.build(answer_params)
-
+    @answer = @question.answers.build(answer_params)    
     respond_to do |format|
       if @answer.save
+        format.html { redirect_to @question }
         format.json { render json: @answer }
       else
         format.json do

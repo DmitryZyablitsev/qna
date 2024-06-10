@@ -6,6 +6,7 @@ but cannot delete someone else's answer
 " do
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
+  given!(:admin) { create(:user, admin: true) }
   given!(:question) { create(:question, author: user) }
   given!(:answer) { create(:answer, author: user, question: question) }
 
@@ -29,5 +30,14 @@ but cannot delete someone else's answer
     visit question_path(question)
 
     expect(page).to have_no_button 'Delete answer'
+  end
+
+  scenario "The administrator can delete someone else's response", :js do
+    sign_in(admin)
+    visit question_path(question)
+
+    click_on 'Delete answer'
+
+    expect(page).to have_no_content answer.body
   end
 end
