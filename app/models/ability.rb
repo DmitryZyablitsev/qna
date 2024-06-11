@@ -35,5 +35,7 @@ class Ability
     cannot :manage, Like, likeable: { author_id: user.id }, user_id: user.id
     can :destroy, Link, linkable: { author_id:  user.id }
     can :destroy, ActiveStorage::Attachment, record: { author_id: user.id }
+    can :me, User, id: user.id
+    can :answers, Question
   end
 end
