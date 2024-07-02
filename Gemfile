@@ -38,6 +38,9 @@ gem 'omniauth-github'
 gem 'omniauth-vkontakte'
 gem "omniauth-rails_csrf_protection"
 gem 'cancancan'
+gem 'doorkeeper'
+gem 'active_model_serializers', '~> 0.10'
+gem 'oj' #этот гем нужен для оптимизации превращения в json
 
 
 group :development, :test do

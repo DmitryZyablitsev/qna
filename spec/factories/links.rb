@@ -1,7 +1,11 @@
 FactoryBot.define do
+  sequence :name do |n|
+    "MyLink_#{n}"
+  end
+
   factory :link do
-    name { 'MyString' }
+    name
     url { 'https://thinknetica.com' }
-    association :linkable, factory: :question
+    # association :linkable, factory: :question
   end
 end

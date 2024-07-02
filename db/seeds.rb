@@ -25,3 +25,9 @@ programming_questions.first.comments.create!([
   { body: 'comment_1', user: user },
   { body: 'comment_2', user: user }
 ])
+
+programming_questions.first.links.create!([
+  { name: 'MyLink', url: 'https://gist.github.com/DmitryZyablitsev/11b2834129c6e9897f680ae4fd6c59d8' },
+  { name: 'MyLink2', url: 'https://thinknetica.com' }
+])
+
