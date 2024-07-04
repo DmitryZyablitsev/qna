@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Questions API', type: :request do
-  let!(:headers) { { "ACCPT" => 'application/json' } }
+  let!(:headers) { { "ACCEPT" => 'application/json' } }
   let(:user)  { create(:user)}
   let(:access_token) {create(:access_token, resource_owner_id: user.id )}
   let(:question) { create(:question) }  

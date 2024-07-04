@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Profile API', type: :request do
-  let(:headers) { { "ACCPT" => 'application/json' } }
+  let(:headers) { { "ACCEPT" => 'application/json' } }
 
   describe 'GET /api/v1/answers/:id' do
     let(:api_path) { '/api/v1/answers/:id' }

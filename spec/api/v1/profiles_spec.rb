@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Profiles API', type: :request do
-  let(:headers) { { "ACCPT" => 'application/json' } }
+  let(:headers) { { "ACCEPT" => 'application/json' } }
   let(:me) { create(:user) }
   let(:access_token) { create(:access_token, resource_owner_id: me.id) }
 
