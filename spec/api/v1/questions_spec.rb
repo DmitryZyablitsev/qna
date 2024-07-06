@@ -30,7 +30,7 @@ describe 'Questions API', type: :request do
 
       it 'returns all public fields' do
         %w[id title body created_at updated_at].each do |attr|
-          expect(question_response[attr]).to eq question.send(attr).as_json
+          expect(question_response[attr]).to eq question.send(attr).as_json # я не понял как здесь примемить math
         end        
       end
 

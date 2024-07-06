@@ -41,6 +41,9 @@ gem 'cancancan'
 gem 'doorkeeper'
 gem 'active_model_serializers', '~> 0.10'
 gem 'oj' #этот гем нужен для оптимизации превращения в json
+gem 'sidekiq' # движек для отложенных задач
+gem 'sinatra', require: false #добавляет Web интерфейс для gem sidekiq
+gem 'whenever', require: false #добавляет приятный синтаксис для планировщика задач
 
 
 group :development, :test do

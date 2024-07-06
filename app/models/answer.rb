@@ -9,4 +9,12 @@ class Answer < ApplicationRecord
   belongs_to :author, class_name: 'User'
 
   validates :body, presence: true, length: { minimum: 3 }
+
+  after_create :send_email
+
+  private
+
+  def send_email
+    NotifyNewAnswerJob.perform_later(self)
+  end
 end

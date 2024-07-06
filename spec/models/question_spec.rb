@@ -4,6 +4,7 @@ RSpec.describe Question do
   it { is_expected.to have_many(:answers).dependent(:destroy) }
   it { is_expected.to have_many(:links).dependent(:destroy) }
   it { is_expected.to have_many(:comments).dependent(:destroy) }
+  it { is_expected.to have_many(:subscribers).dependent(:destroy) }
   it { is_expected.to have_one(:reward).dependent(:destroy) }
   it { is_expected.to belong_to :author }
 
@@ -15,5 +16,14 @@ RSpec.describe Question do
 
   it 'has many attached files' do
     expect(described_class.new.files).to be_an_instance_of(ActiveStorage::Attached::Many)
+  end
+
+  describe 'reputation' do
+    let(:question) { build(:question) }
+
+    it 'calls ReputationJob' do
+      expect(ReputationJob).to receive(:perform_later).with(question)
+      question.save!
+    end
   end
 end

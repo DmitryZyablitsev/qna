@@ -1,0 +1,7 @@
+-if current_user
+  -if current_user.subscriber?(resource)
+    -subscription = current_user.subscribers.find_by(question_id: resource)  
+    =button_to('Unsubscribe', subscriber_path(subscription), method: :delete )
+  -else
+    =button_to('Subscribe', subscribers_path, method: :post, params: { subscriber: { question_id: resource.id } }  )
+

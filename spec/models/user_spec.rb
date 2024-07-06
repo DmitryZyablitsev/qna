@@ -4,6 +4,7 @@ RSpec.describe User do
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
   let(:question) { create(:question, author: user) }
+  let!(:subscriber) { create(:subscriber, user: user, question: question) }
 
   it { is_expected.to have_many(:questions).dependent(:destroy) }
   it { is_expected.to have_many(:answers).dependent(:destroy) }
@@ -11,6 +12,7 @@ RSpec.describe User do
   it { is_expected.to have_many(:likes).dependent(:destroy) }
   it { is_expected.to have_many(:comments).dependent(:destroy) }
   it { is_expected.to have_many(:authorizations).dependent(:destroy) }
+  it { is_expected.to have_many(:subscribers).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of :email }
   it { is_expected.to validate_presence_of :password }  
@@ -34,6 +36,12 @@ RSpec.describe User do
       expect(FindForOauth).to receive(:new).with(auth).and_return(service)
       expect(service).to receive(:call)
       User.find_for_oauth(auth)
+    end
+  end
+
+  describe '#subscriber?' do
+    it 'The user is subscribed to the question' do
+      expect(user.subscriber?(question)).to be true
     end
   end
 end

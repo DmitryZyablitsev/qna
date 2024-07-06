@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :authorizations, dependent: :destroy
+  has_many :subscribers, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable
@@ -16,5 +17,9 @@ class User < ApplicationRecord
 
   def author_of?(resource)
     resource.author_id == id
+  end
+
+  def subscriber?(resource)
+    Subscriber.where(user: self, question: resource).any?
   end
 end
