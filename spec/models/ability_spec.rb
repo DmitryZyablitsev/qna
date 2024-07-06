@@ -24,7 +24,9 @@ RSpec.describe Ability do
     let(:other_user) { create :user }
     let(:question) { create :question, author_id: user.id }
     let(:othe_question) { create :question, author_id: other_user.id }
-    let(:answer) { create :answer, author_id: user.id }    
+    let(:answer) { create :answer, author_id: user.id }
+    let(:subscriber) { create :subscriber, user_id: user.id, question_id: question.id }
+
 
     it { should_not be_able_to :manage, :all }
     it { should be_able_to :read, :all }
@@ -62,5 +64,10 @@ RSpec.describe Ability do
     # File
     it { should be_able_to(:destroy, ActiveStorage::Attachment.create(record: question) ) }
     it { should_not be_able_to(:destroy, ActiveStorage::Attachment.create(record: othe_question) ) }
+
+    #Subscriber
+    it { should be_able_to :create, Subscriber }
+    it { should be_able_to :destroy, subscriber }
+    it { should_not be_able_to :destroy, create(:subscriber, user: other_user) }
   end
 end
