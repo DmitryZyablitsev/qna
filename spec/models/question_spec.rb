@@ -4,7 +4,7 @@ RSpec.describe Question do
   it { is_expected.to have_many(:answers).dependent(:destroy) }
   it { is_expected.to have_many(:links).dependent(:destroy) }
   it { is_expected.to have_many(:comments).dependent(:destroy) }
-  it { is_expected.to have_many(:subscribers).dependent(:destroy) }
+  it { is_expected.to have_many(:subscriptions).dependent(:destroy) }
   it { is_expected.to have_one(:reward).dependent(:destroy) }
   it { is_expected.to belong_to :author }
 

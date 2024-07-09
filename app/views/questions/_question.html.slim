@@ -9,7 +9,7 @@ div class="card mb-3 mt-3" style="max-width: 35rem"
   .like
     = render 'likes/button', resource: question
   .subscribe
-    = render 'subscribes/button', resource: question
+    = render 'subscriptions/button', resource: question
   
   .comments
     = render partial: 'comments/comments', locals: { resource: question}

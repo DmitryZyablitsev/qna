@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :authorizations, dependent: :destroy
-  has_many :subscribers, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable
@@ -20,6 +20,6 @@ class User < ApplicationRecord
   end
 
   def subscriber?(resource)
-    Subscriber.where(user: self, question: resource).any?
+    Subscription.where(user: self, question: resource).any?
   end
 end
