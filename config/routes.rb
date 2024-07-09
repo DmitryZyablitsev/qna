@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :rewards, only: :index
   resources :likes, only: %i[create destroy]
   resources :links, only: :destroy
-  resources :subscribers, only: %i[create destroy]
+  resources :subscriptions, only: %i[create destroy]
   
 
   patch 'answer_best/:id', to: 'answers#best' 
