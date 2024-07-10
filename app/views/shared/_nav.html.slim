@@ -1,8 +1,13 @@
-.nav
-  -if user_signed_in?
-    =button_to 'Log out', destroy_user_session_path, method: :delete
-    =link_to 'doorkeeper-admin-panel', oauth_applications_path if current_user.admin?
-    =link_to 'My rewards', rewards_path if current_user.rewards.any?
-  -else
-    =button_to 'Login', new_user_session_path
-    =link_to 'Register', new_user_registration_path
+.header class='container'
+  .div class='row'
+    .nav class='col'
+      -if user_signed_in?
+        =button_to 'Log out', destroy_user_session_path, method: :delete
+        =link_to 'doorkeeper-admin-panel', oauth_applications_path if current_user.admin?
+        =link_to 'My rewards', rewards_path if current_user.rewards.any?
+      -else
+        =button_to 'Login', new_user_session_path
+        =link_to 'Register', new_user_registration_path
+
+    div class="col float-end"    
+      = render 'search/form'

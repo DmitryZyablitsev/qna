@@ -42,3 +42,6 @@ yarn-debug.log*
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+/config/*.sphinx.conf
+db/sphinx

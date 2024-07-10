@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
@@ -19,9 +20,9 @@ Rails.application.routes.draw do
   resources :likes, only: %i[create destroy]
   resources :links, only: :destroy
   resources :subscriptions, only: %i[create destroy]
-  
 
   patch 'answer_best/:id', to: 'answers#best' 
+  get '/search', to: 'search#search'
 
   namespace :api do
     namespace :v1 do

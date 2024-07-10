@@ -1,0 +1,8 @@
+p = link_to 'Back', questions_path
+
+.search_result
+  h3 Search results:
+  -if @search_result.empty?
+    p Nothing was found.
+  -@search_result.each do |result|    
+    p= render partial: "search/#{result.class.name.downcase}", locals: { result: result }
