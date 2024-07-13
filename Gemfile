@@ -10,6 +10,9 @@ gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 
+gem 'base64', '~> 0.1.0'
+
+
 gem 'redis', '~> 4.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
@@ -72,19 +75,23 @@ group :development do
   gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', require: false
   gem 'spring'
-  
+
+  gem 'capistrano', require: false  
+  # gem 'capistrano-bundler', require: false
+  # gem 'rvm1-capistrano3', require: false
+  # gem 'capistrano-rvm'
+  gem 'capistrano-rbenv', '~> 2.2'
+  gem 'capistrano-rails', require: false 
+  gem 'capistrano-passenger', require: false  
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver', '~> 4.18.1'
+  # gem 'selenium-webdriver', '~> 4.18.1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 6.0'
   gem 'webdrivers'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
