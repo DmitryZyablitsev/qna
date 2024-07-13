@@ -1,0 +1,14 @@
+{
+  "application.js": "/packs/application.js",
+  "application.js.map": "/packs/application.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/application.js"
+      ],
+      "js.map": [
+        "/packs/application.js.map"
+      ]
+    }
+  }
+}
