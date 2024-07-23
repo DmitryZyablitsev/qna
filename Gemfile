@@ -78,11 +78,11 @@ group :development do
 
   gem 'capistrano', require: false  
   # gem 'capistrano-bundler', require: false
-  # gem 'rvm1-capistrano3', require: false
-  # gem 'capistrano-rvm'
-  gem 'capistrano-rbenv', '~> 2.2'
+  gem 'capistrano-rvm'
+  # gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano-rails', require: false 
-  gem 'capistrano-passenger', require: false  
+  gem 'capistrano-passenger', require: false
+  gem 'capistrano-sidekiq', require: false
 end
 
 group :test do
