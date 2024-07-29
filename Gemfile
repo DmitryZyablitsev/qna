@@ -50,6 +50,7 @@ gem 'whenever', require: false #добавляет приятный синтак
 gem 'mysql2',          '~> 0.4',    :platform => :ruby # нужен для работы gem 'thinking-sphinx'
 gem 'thinking-sphinx', '~> 5.5' # движек для полнотекстового поиска 
 gem 'database_cleaner-active_record'
+gem 'dashamail'
 
 
 group :development, :test do
