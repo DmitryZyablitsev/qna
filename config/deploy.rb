@@ -18,3 +18,5 @@ set :bundle_jobs, 1
 append :linked_files, "config/database.yml", 'config/master.key', 'config/thinking_sphinx.yml'
 
 append :linked_dirs, '.bundle', "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "vendor", "storage"
+
+after 'deploy:publishing', 'unicorn:restart'
