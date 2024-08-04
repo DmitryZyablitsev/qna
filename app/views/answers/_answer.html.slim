@@ -1,24 +1,25 @@
-div(class="card mb-3 mt-3" style="max-width: 35rem" id="answer-#{answer.id}") 
-  p= answer.body
-  .files
-    = render 'files/file', resource: answer
-  .links
-    = render 'links/link', resource: answer
+-cache answer do
+  div(class="card mb-3 mt-3" style="max-width: 35rem" id="answer-#{answer.id}") 
+    p= answer.body
+    .files
+      = render 'files/file', resource: answer
+    .links
+      = render 'links/link', resource: answer
 
-  -if current_user&.author_of?(@question) && @question.best_answer_id !=answer.id 
-    p= link_to 'Best',"/answer_best/#{answer.id}", method: :patch, remote: true
+    -if current_user&.author_of?(@question) && @question.best_answer_id !=answer.id 
+      p= link_to 'Best',"/answer_best/#{answer.id}", method: :patch, remote: true
 
-  - if can?(:update, answer)
-    p= link_to 'Edit','#', class: 'edit-answer-link', data: { answer_id: answer.id }
-    p= button_to 'Delete answer', answer_path(answer), method: :delete, remote: true
+    - if can?(:update, answer)
+      p= link_to 'Edit','#', class: 'edit-answer-link', data: { answer_id: answer.id }
+      p= button_to 'Delete answer', answer_path(answer), method: :delete, remote: true
 
-  = form_with model: answer, local: false, class: 'd-none', html: { id: "edit-answer-#{answer.id}" } do |f|
-    p= f.label :body, 'Your answer'
-    p= f.text_area :body    
-    p= f.label :files
-    p= f.file_field :files, multiple: true
-    = f.submit 'Save'
-  .like
-    = render 'likes/button', resource: answer
-  .comments
-    = render partial: 'comments/comments', locals: { resource: answer}
+    = form_with model: answer, local: false, class: 'd-none', html: { id: "edit-answer-#{answer.id}" } do |f|
+      p= f.label :body, 'Your answer'
+      p= f.text_area :body    
+      p= f.label :files
+      p= f.file_field :files, multiple: true
+      = f.submit 'Save'
+    .like
+      = render 'likes/button', resource: answer
+    .comments
+      = render partial: 'comments/comments', locals: { resource: answer}

@@ -51,6 +51,7 @@ gem 'mysql2',          '~> 0.4',    :platform => :ruby # нужен для ра�
 gem 'thinking-sphinx', '~> 5.5' # движек для полнотекстового поиска 
 gem 'database_cleaner-active_record'
 gem 'unicorn'
+gem 'redis-rails'
 
 
 group :development, :test do

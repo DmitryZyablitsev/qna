@@ -1,7 +1,10 @@
 h1 index All questions
 - if can?(:create, Question)
   = link_to 'Ask question', new_question_path
+
+
 .question-list
-  - @questions.each do |question|
-    div class="question-#{question.id} card mb-3 mt-3" style="max-width: 18rem"
-      = render 'basic_question', question: question
+  -cache collection_cache_key_for :question do
+    - @questions.each do |question|
+      div class="question-#{question.id} card mb-3 mt-3" style="max-width: 18rem"
+        = render 'basic_question', question: question
